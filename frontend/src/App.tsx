@@ -1,12 +1,20 @@
 import { Route, Routes } from 'react-router-dom'
-import { PublicOnly } from '@/components/route-guards'
+import { AppLayout } from '@/components/app-layout'
+import { PublicOnly, RequireAuth } from '@/components/route-guards'
+import Categories from '@/pages/Categories'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import { useAuthStore } from '@/stores/auth'
 
 function Home() {
   const token = useAuthStore((s) => s.token)
-  return token ? <main className="p-8">Logado</main> : <Login />
+  return token ? (
+    <AppLayout>
+      <p className="text-gray-600">Dashboard em breve</p>
+    </AppLayout>
+  ) : (
+    <Login />
+  )
 }
 
 export default function App() {
@@ -15,6 +23,11 @@ export default function App() {
       <Route path="/" element={<Home />} />
       <Route element={<PublicOnly />}>
         <Route path="/register" element={<Register />} />
+      </Route>
+      <Route element={<RequireAuth />}>
+        <Route element={<AppLayout />}>
+          <Route path="/categories" element={<Categories />} />
+        </Route>
       </Route>
     </Routes>
   )
