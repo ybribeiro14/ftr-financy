@@ -9,10 +9,12 @@ import { buildContext } from './graphql/context'
 import { HealthResolver } from './resolvers/health.resolver'
 import { AuthResolver } from './resolvers/auth.resolver'
 import { CategoryResolver } from './resolvers/category.resolver'
+import { TransactionResolver } from './resolvers/transaction.resolver'
+import { DashboardResolver } from './resolvers/dashboard.resolver'
 
 async function bootstrap() {
   const schema = await buildSchema({
-    resolvers: [HealthResolver, AuthResolver, CategoryResolver],
+    resolvers: [HealthResolver, AuthResolver, CategoryResolver, TransactionResolver, DashboardResolver],
     validate: { forbidUnknownValues: false, validationError: { target: false, value: false } },
     emitSchemaFile: './schema.graphql',
   })
