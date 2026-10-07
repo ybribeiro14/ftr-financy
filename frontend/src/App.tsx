@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { AppLayout } from '@/components/app-layout'
 import { PublicOnly, RequireAuth } from '@/components/route-guards'
 import Categories from '@/pages/Categories'
+import Transactions from '@/pages/Transactions'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import { useAuthStore } from '@/stores/auth'
@@ -26,6 +27,7 @@ export default function App() {
       </Route>
       <Route element={<RequireAuth />}>
         <Route element={<AppLayout />}>
+          <Route path="/transactions" element={<Transactions />} />
           <Route path="/categories" element={<Categories />} />
         </Route>
       </Route>
