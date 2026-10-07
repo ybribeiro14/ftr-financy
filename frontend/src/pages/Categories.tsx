@@ -86,7 +86,7 @@ export default function Categories() {
           icon={TopIcon && top ? <TopIcon className={cn('size-6', categoryColor(top.color).soft.split(' ')[1])} /> : null}
           label="Categoria mais utilizada"
         >
-          {top?.title ?? '—'}
+          {top?.title ?? '-'}
         </SummaryCard>
       </div>
 
